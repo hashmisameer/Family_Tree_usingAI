@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Tree Overview</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='overview.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Family Tree Overview</h1>
+        </header>
+
+        <!-- Summary Section -->
+        <section class="summary-section">
+            <h2>Family Overview</h2>
+            {% if members %}
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <p>Total Members</p>
+                    <h3>{{ members|length }}</h3>
+                </div>
+            </div>
+            {% else %}
+            <p>No family members have been added yet. Start building your family tree!</p>
+            {% endif %}
+        </section>
+
+        <!-- Family Tree Visualization -->
+        <section class="family-tree-section">
+            <h2>Family Tree</h2>
+            {% if members %}
+            <div class="tree-container">
+                <ul>
+                    {% for member in members %}
+                    <li>
+                        <strong>{{ member['name'] }}</strong> 
+                        ({{ member['relation'] }})
+                        <br>
+                        <!-- Debugging Details -->
+                        <small>ID: {{ member['id'] }} | 
+                        Parent ID: {{ member['parent_id'] or 'N/A' }} | 
+                        Spouse ID: {{ member['spouse_id'] or 'N/A' }}</small>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% else %}
+            <p>The family tree is currently empty. Add your first family member.</p>
+            {% endif %}
+        </section>
+
+        <!-- Add Family Member Section -->
+        <section class="add-member-section">
+            <h2>Add a Family Member</h2>
+            <form action="/add_member" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter name" required>
+
+                <label for="relation">Relation:</label>
+                <select id="relation" name="relation" required>
+                    <option value="" disabled selected>Select relation</option>
+                    <option value="grandfather">Grandfather</option>
+                    <option value="grandmother">Grandmother</option>
+                    <option value="father">Father</option>
+                    <option value="mother">Mother</option>
+                    <option value="son">Son</option>
+                    <option value="daughter">Daughter</option>
+                    <option value="brother">Brother</option>
+                    <option value="sister">Sister</option>
+                    <option value="spouse">Spouse</option>
+                </select>
+
+                <label for="parent_id">Parent ID (optional):</label>
+                <input type="text" id="parent_id" name="parent_id" placeholder="Enter Parent ID">
+
+                <label for="spouse_id">Spouse ID (optional):</label>
+                <input type="text" id="spouse_id" name="spouse_id" placeholder="Enter Spouse ID">
+
+                <button type="submit" class="btn">Add Member</button>
+            </form>
+        </section>
+
+        <!-- Back to Dashboard Button -->
+        <section class="back-section">
+            <a href="/dashboard" class="btn back-btn">Back to Dashboard</a>
+        </section>
+    </div>
+</body>
+</html>

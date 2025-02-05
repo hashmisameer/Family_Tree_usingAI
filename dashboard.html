@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Hamburger Menu Button -->
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <!-- Sidebar (Hidden by Default, Toggles on Hamburger Menu Click) -->
+        <div class="dashboard-sidebar" id="sidebar">
+            <h2 class="sidebar-title">Menu</h2>
+            <ul class="sidebar-menu">
+                <li><a href="/overview"><i class="fas fa-tachometer-alt"></i> Overview</a></li>
+                <li><a href="/profile"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="dashboard-main">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <h1>Your Personalized Family Hub</h1>
+                <p>Explore, Connect, and Manage Your Family Legacy.</p>
+            </header>
+
+            <!-- Summary Metrics -->
+            <section class="summary-metrics">
+                <div class="metric-card">
+                    <h3>Total Members</h3>
+                    <p>{{ members|length }}</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Generations</h3>
+                    <p>{{ generations }}</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Oldest Member</h3>
+                    <p>{{ oldest_member }}</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Upcoming Events</h3>
+                    <p>{{ upcoming_events }}</p>
+                </div>
+            </section>
+
+            <!-- Pie Chart -->
+            <section class="chart-section">
+                <h3>Family Member Distribution</h3>
+                <canvas id="familyPieChart"></canvas>
+            </section>
+
+            <!-- Photo Album -->
+            <section class="album-section">
+                <h3><i class="fas fa-camera-retro"></i> Photo Album</h3>
+                <div class="photo-gallery">
+                    <img src="{{ url_for('static', filename='images/photo1.jpg') }}" alt="Photo 1">
+                    <img src="{{ url_for('static', filename='images/photo2.jpg') }}" alt="Photo 2">
+                </div>
+            </section>
+
+            <!-- Video Album -->
+            <section class="album-section">
+                <h3><i class="fas fa-video"></i> Video Album</h3>
+                <div class="video-gallery">
+                    <video controls>
+                        <source src="{{ url_for('static', filename='videos/video1.mp4') }}" type="video/mp4">
+                    </video>
+                </div>
+            </section>
+
+            <!-- New Family Members Section -->
+            <section class="family-members-section">
+                <h3><i class="fas fa-users"></i> Family Members</h3>
+                <ul class="family-members-list">
+                    {% for member in family_members %}
+                        <li>
+                            <strong>{{ member.name }}</strong> 
+                            ({{ member.relation }}) - Age: {{ member.age }}
+                        </li>
+                    {% else %}
+                        <li>No family members to display.</li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <!-- Chatbot Section -->
+    <div id="chatbot-container">
+        <button id="chatbot-toggle">Chatbot</button>
+        <div id="chatbox" style="display: none;"></div>
+        <div id="chat-input-container" style="display: none;">
+            <input type="text" id="chat-input" placeholder="Type a message...">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='chatbot.js') }}"></script>
+</body>
+</html>

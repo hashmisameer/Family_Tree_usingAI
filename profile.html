@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/static/profile.css">
+</head>
+<body>
+    <div class="profile-container">
+        <!-- Profile Header with Photo -->
+        <div class="profile-header">
+            <div class="profile-photo">
+                <div class="profile-photo-container">
+                    <img src="{{ url_for('static', filename='images/' + user.get('profile_pic', 'default-user.png')) }}" 
+                         alt="User Profile" class="profile-photo-icon" 
+                         onclick="openModal()">  <!-- Click to open modal -->
+                </div>
+            </div>
+            <h1>{{ user['name'] }}'s Profile</h1>
+        </div>
+
+        <!-- Profile Details -->
+        <div class="profile-details">
+            <p><strong>Email:</strong> {{ user['email'] }}</p>
+            <a href="/dashboard" class="back-to-dashboard">Back to Dashboard</a>
+        </div>
+
+        <!-- File Upload Modal -->
+        <div id="profile-pic-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Upload or Remove Profile Picture</h2>
+
+                <!-- Upload Form -->
+                <form action="/profile" method="POST" enctype="multipart/form-data">
+                    <label for="profile-pic">Choose a new profile picture:</label>
+                    <input type="file" id="profile-pic" name="profile_pic" accept="image/*">
+                    <button type="submit">Upload</button>
+                </form>
+
+                <!-- Remove Form -->
+                <form action="/remove-profile-pic" method="POST">
+                    <button type="submit">Remove Profile Picture</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/profile.js"></script>
+</body>
+</html>
