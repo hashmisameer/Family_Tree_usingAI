@@ -1,0 +1,250 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+/* Modern File Upload Styling */
+.file-upload {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.file-upload input[type="file"] {
+    display: none;
+}
+
+.file-upload label {
+    background-color: #1abc9c;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    display: inline-block;
+    transition: background 0.3s;
+}
+
+.file-upload label:hover {
+    background-color: #16a085;
+}
+
+.file-upload button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.file-upload button:hover {
+    background-color: #45a049;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    transition: all 0.3s ease;
+}
+
+/* Sidebar */
+.dashboard-sidebar {
+    background-color: #2d3e50;
+    color: #fff;
+    width: 260px;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.dashboard-sidebar.sidebar-active {
+    transform: translateX(0);
+}
+
+.dashboard-sidebar h2 {
+    font-size: 26px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #1abc9c;
+    font-weight: bold;
+}
+
+.dashboard-sidebar ul {
+    list-style: none;
+}
+
+.dashboard-sidebar li {
+    margin: 20px 0;
+}
+
+.dashboard-sidebar a {
+    text-decoration: none;
+    color: #ecf0f1;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    padding: 10px 0;
+}
+
+.dashboard-sidebar a:hover {
+    color: #1abc9c;
+    transform: translateX(10px);
+}
+
+.dashboard-sidebar a i {
+    margin-right: 10px;
+}
+
+/* Main Content */
+.dashboard-main {
+    margin-left: 260px;
+    flex: 1;
+    padding: 20px;
+    background-color: #f4f7f6;
+    transition: margin-left 0.3s ease;
+}
+
+.dashboard-main.content-expanded {
+    margin-left: 0;
+}
+
+.dashboard-header {
+    background: linear-gradient(to right, #1abc9c, #16a085);
+    color: #fff;
+    padding: 30px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-header h1 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.dashboard-header p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* Hamburger Menu */
+#menu-toggle {
+    background-color: #1abc9c;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+}
+
+/* Photo and Video Album */
+.album-section {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.album-section h3 {
+    color: #555;
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.photo-gallery, .video-gallery {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.photo-item, .video-item {
+    background: #f9f9fb;
+    width: 180px;
+    height: 140px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.photo-item img, .video-item video {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.photo-item:hover, .video-item:hover {
+    transform: scale(1.05);
+}
+
+/* Chatbot */
+#chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+#chatbot-toggle {
+    background-color: #1abc9c;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#chatbox {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 300px;
+    height: 250px;
+    overflow-y: auto;
+    display: none;
+    border-radius: 5px;
+}
+
+#chat-input-container {
+    margin-top: 10px;
+    display: flex;
+}
+
+#chat-input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#send-button {
+    background-color: #1abc9c;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
