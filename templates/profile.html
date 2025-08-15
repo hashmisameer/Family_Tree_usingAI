@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="/static/profile.css">
+</head>
+<body>
+    <div class="profile-container">
+        <h1>User Profile</h1>
+
+        <!-- Display Only Email -->
+        <div class="profile-details">
+            <p><strong>Email:</strong> {{ user.get('email', 'Not Available') }}</p>
+        </div>
+
+        <a href="/dashboard" class="back-to-dashboard">Back to Dashboard</a>
+    </div>
+
+    <script src="/static/profile.js"></script>
+</body>
+</html>
